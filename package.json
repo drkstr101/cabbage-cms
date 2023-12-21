@@ -3,6 +3,14 @@
   "version": "0.0.0",
   "license": "MIT",
   "private": true,
+  "scripts": {
+    "format": "prettier . --write",
+    "lint": "nx format:check && nx run-many --target=lint --parallel",
+    "test": "nx run-many --target=test --parallel --coverage -- --runInBand",
+    "build": "nx run-many --target=build --parallel",
+    "start": "nx run-many --target=serve --parallel",
+    "e2e": "nx run cypress:e2e"
+  },
   "dependencies": {
     "@nx/next": "17.2.6",
     "next": "14.0.4",
