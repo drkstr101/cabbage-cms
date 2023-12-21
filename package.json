@@ -12,6 +12,11 @@
     "e2e": "nx run cypress:e2e"
   },
   "dependencies": {
+    "@emotion/cache": "^11.11.0",
+    "@emotion/react": "^11.11.1",
+    "@emotion/styled": "^11.11.0",
+    "@mui/icons-material": "^5.15.1",
+    "@mui/material": "^5.15.1",
     "@nx/next": "17.2.6",
     "next": "14.0.4",
     "react": "18.2.0",
