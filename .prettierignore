@@ -1,0 +1,10 @@
+# Add files here to ignore them from prettier formatting
+/dist
+/node_moduls
+/coverage
+/tmp
+/.nx/cache
+/.yarn
+/yarn.lock
+
+.next/
