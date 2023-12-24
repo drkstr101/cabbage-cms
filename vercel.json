@@ -1,0 +1,11 @@
+{
+  "buildCommand": "nx run home:build:production",
+  "cleanUrls": true,
+  "devCommand": "nx run home:serve:development",
+  "framework": "nextjs",
+  "installCommand": "yarn install --frozen-lockfile",
+  "outputDirectory": "dist/apps/home/.next",
+  "public": true,
+  "regions": ["iad1", "sfo1"],
+  "trailingSlash": false
+}
