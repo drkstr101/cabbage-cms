@@ -1,0 +1,11 @@
+{
+  "name": "@cabbage-cms/model",
+  "version": "0.0.1",
+  "dependencies": {
+    "@swc/helpers": "~0.5.2",
+    "@stackbit/types": "^0.10.19"
+  },
+  "type": "commonjs",
+  "main": "./src/index.js",
+  "typings": "./src/index.d.ts"
+}
