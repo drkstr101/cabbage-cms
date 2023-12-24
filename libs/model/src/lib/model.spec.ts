@@ -1,4 +1,6 @@
-import modelsByName, { ModelName } from './model';
+import modelsByName from './model';
+
+type ModelName = keyof typeof modelsByName;
 
 describe('cabbage-cms.model', () => {
   it.each([

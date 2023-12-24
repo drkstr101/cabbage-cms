@@ -1,30 +1,30 @@
-export type Document = Config | Page;
-export type DocumentTypeName = Config['type'] | Page['type'];
+export type IDocument = ConfigModel | PageModel;
+export type IPage = PageModel;
+export type IDocumentType = IDocument['type'];
 
-export type Section = CardsSection | HeroSection;
+export type ISection = CardsSectionModel | HeroSectionModel;
 
-export type ModelKind = 'data' | 'object' | 'page';
-
-/** Document types */
-export type Config = {
+/** Data (document) types */
+export type ConfigModel = {
   __metadata: { id: string };
   type: 'Config';
   favicon?: string;
-  header?: Header;
-  footer?: Footer;
+  header?: HeaderModel;
+  footer?: FooterModel;
 };
 
-export type Page = {
-  __metadata: { id: string };
-  slug: string;
+/** Page (document) types */
+
+export type PageModel = {
+  __metadata: { id: string; slug: string };
   type: 'Page';
   title: string;
-  sections?: Section[];
+  sections?: ISection[];
   content?: string;
 };
 
-/** Nested types */
-export type Button = {
+/** Nested (object) types */
+export type ButtonModel = {
   type: 'Button';
   label: string;
   url: string;
@@ -33,49 +33,49 @@ export type Button = {
   color?: 'inherit' | 'primary' | 'secondary';
 };
 
-export type Card = {
+export type CardModel = {
   type: 'Card';
   title?: string;
   text?: string;
-  image?: Image;
-  actions?: Button[];
+  image?: ImageModel;
+  actions?: ButtonModel[];
 };
 
-export type CardsSection = {
+export type CardsSectionModel = {
   type: 'CardsSection';
   title?: string;
   subtitle?: string;
-  items?: Card[];
+  items?: CardModel[];
 };
 
-export type Footer = {
+export type FooterModel = {
   type: 'Footer';
   copyrightText?: string;
-  navLinks?: Link[];
+  navLinks?: LinkModel[];
 };
 
-export type Header = {
+export type HeaderModel = {
   type: 'Header';
   title?: string;
-  navLinks?: Link[];
+  navLinks?: LinkModel[];
 };
 
-export type HeroSection = {
+export type HeroSectionModel = {
   type: 'HeroSection';
   title?: string;
   subtitle?: string;
   text?: string;
-  actions?: Button[];
-  image?: Image;
+  actions?: ButtonModel[];
+  image?: ImageModel;
 };
 
-export type Image = {
+export type ImageModel = {
   type: 'Image';
   url?: string;
   altText?: string;
 };
 
-export type Link = {
+export type LinkModel = {
   type: 'Link';
   label: string;
   url: string;
