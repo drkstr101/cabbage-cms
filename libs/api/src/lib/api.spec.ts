@@ -1,7 +1,14 @@
-import { api } from './api';
+import { pagesByType, siteConfig } from './api';
 
-describe('api', () => {
-  it('should work', () => {
-    expect(api()).toEqual('api');
+describe('cabbage-cms.api', () => {
+  describe('pagesByType', () => {
+    const pages = pagesByType('Page');
+    expect(pages).toBeInstanceOf(Object);
+  });
+  describe('siteConfig', () => {
+    it('should work', async () => {
+      const config = siteConfig();
+      expect(config).toBeTruthy();
+    });
   });
 });

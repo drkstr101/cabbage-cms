@@ -1,21 +1,55 @@
-export type IDocument = ConfigModel | PageModel;
-export type IPage = PageModel;
-export type IDocumentType = IDocument['type'];
+export type IModelProps =
+  | ButtonProps
+  | CardProps
+  | CardsSectionProps
+  | ConfigProps
+  | FooterProps
+  | HeaderProps
+  | HeroSectionProps
+  | ImageProps
+  | LinkProps
+  | MetaTagProps
+  | PageProps
+  | SeoProps
+  | ThemeConfigProps;
+export type ModelType = IModelProps['type'];
 
-export type ISection = CardsSectionModel | HeroSectionModel;
+//
+// Document types
+//
+////////////////////////
 
-/** Data (document) types */
-export type ConfigModel = {
+export type IDocumentProps = ConfigProps | ThemeConfigProps;
+export type DocumentType = IDocumentProps['type'];
+
+export type ConfigProps = {
   __metadata: { id: string };
   type: 'Config';
   favicon?: string;
-  header?: HeaderModel;
-  footer?: FooterModel;
+  header?: HeaderProps;
+  footer?: FooterProps;
 };
 
-/** Page (document) types */
+export type ThemeConfigProps = {
+  __metadata: { id: string };
+  type: 'ThemeConfig';
+  mode?: 'light' | 'dark';
+  primaryColor?: string;
+  secondaryColor?: string;
+};
 
-export type PageModel = {
+//
+// Page types
+//
+////////////////////////
+
+export type IPageProps = PageProps;
+export type PageType = IPageProps['type'];
+
+export type ISection = CardsSectionProps | HeroSectionProps;
+export type SectionType = ISection['type'];
+
+export type PageProps = {
   __metadata: { id: string; slug: string };
   type: 'Page';
   title: string;
@@ -23,8 +57,62 @@ export type PageModel = {
   content?: string;
 };
 
-/** Nested (object) types */
-export type ButtonModel = {
+//
+// Block types
+//
+////////////////////////
+
+export type HeroSectionProps = {
+  type: 'HeroSection';
+  title?: string;
+  subtitle?: string;
+  text?: string;
+  actions?: ButtonProps[];
+  image?: ImageProps;
+};
+
+export type CardsSectionProps = {
+  type: 'CardsSection';
+  title?: string;
+  subtitle?: string;
+  items?: CardProps[];
+};
+
+//
+// Object types
+//
+////////////////////////
+
+export type SeoProps = {
+  type: 'Seo';
+  metaTitle?: string;
+  metaDescription: string;
+};
+
+export type MetaTagProps = {
+  type: 'MetaTag';
+  property:
+    | 'og:title'
+    | 'og:type'
+    | 'og:image'
+    | 'og:image:alt'
+    | 'og:url'
+    | 'og:description'
+    | 'og:locale'
+    | 'og:site_name'
+    | 'og:video'
+    | 'twitter:card'
+    | 'twitter:site'
+    | 'twitter:creator'
+    | 'twitter:description'
+    | 'twitter:title'
+    | 'twitter:image'
+    | 'twitter:image:alt'
+    | 'twitter:player';
+  content: string;
+};
+
+export type ButtonProps = {
   type: 'Button';
   label: string;
   url: string;
@@ -33,49 +121,33 @@ export type ButtonModel = {
   color?: 'inherit' | 'primary' | 'secondary';
 };
 
-export type CardModel = {
+export type CardProps = {
   type: 'Card';
   title?: string;
   text?: string;
-  image?: ImageModel;
-  actions?: ButtonModel[];
+  image?: ImageProps;
+  actions?: ButtonProps[];
 };
 
-export type CardsSectionModel = {
-  type: 'CardsSection';
-  title?: string;
-  subtitle?: string;
-  items?: CardModel[];
-};
-
-export type FooterModel = {
+export type FooterProps = {
   type: 'Footer';
   copyrightText?: string;
-  navLinks?: LinkModel[];
+  navLinks?: LinkProps[];
 };
 
-export type HeaderModel = {
+export type HeaderProps = {
   type: 'Header';
   title?: string;
-  navLinks?: LinkModel[];
+  navLinks?: LinkProps[];
 };
 
-export type HeroSectionModel = {
-  type: 'HeroSection';
-  title?: string;
-  subtitle?: string;
-  text?: string;
-  actions?: ButtonModel[];
-  image?: ImageModel;
-};
-
-export type ImageModel = {
+export type ImageProps = {
   type: 'Image';
   url?: string;
   altText?: string;
 };
 
-export type LinkModel = {
+export type LinkProps = {
   type: 'Link';
   label: string;
   url: string;

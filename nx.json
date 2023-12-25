@@ -48,7 +48,7 @@
       "!{projectRoot}/.eslintrc.json",
       "!{projectRoot}/eslint.config.js"
     ],
-    "sharedGlobals": []
+    "sharedGlobals": ["{workspaceRoot}/workspace.config.ts"]
   },
   "generators": {
     "@nx/react": {

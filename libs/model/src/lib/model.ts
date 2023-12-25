@@ -1,3 +1,5 @@
+import { Model } from '@stackbit/types';
+import { ModelType } from './model.types';
 import {
   Button,
   Card,
@@ -8,11 +10,13 @@ import {
   HeroSection,
   Image,
   Link,
+  MetaTag,
   Page,
-  ThemeStyle,
+  Seo,
+  ThemeConfig,
 } from './models';
 
-export const modelsByName = {
+export const modelsByName: Record<ModelType, Model> = {
   Button,
   Card,
   CardsSection,
@@ -22,8 +26,10 @@ export const modelsByName = {
   HeroSection,
   Image,
   Link,
+  MetaTag,
   Page,
-  ThemeStyle,
+  Seo,
+  ThemeConfig,
 } as const;
 
 export default modelsByName;

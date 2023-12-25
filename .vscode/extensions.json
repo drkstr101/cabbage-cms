@@ -6,6 +6,7 @@
     "dbaeumer.vscode-eslint",
     "kavod-io.vscode-jest-test-adapter",
     "orta.vscode-jest",
-    "hbenl.vscode-test-explorer"
+    "hbenl.vscode-test-explorer",
+    "davidanson.vscode-markdownlint"
   ]
 }
