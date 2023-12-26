@@ -1,5 +1,4 @@
-import { Model } from '@stackbit/types';
-import { ModelType } from './model.types';
+import type { CabbageModel } from './model.types';
 import {
   Button,
   Card,
@@ -16,7 +15,7 @@ import {
   ThemeConfig,
 } from './models';
 
-export const modelsByName: Record<ModelType, Model> = {
+export const modelsByName: CabbageModel = {
   Button,
   Card,
   CardsSection,

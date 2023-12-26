@@ -1,3 +1,7 @@
+import { Model } from '@stackbit/types';
+
+export type CabbageModel = Readonly<Record<ModelType, Model>>;
+
 export type IModelProps =
   | ButtonProps
   | CardProps

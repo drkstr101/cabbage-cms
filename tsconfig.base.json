@@ -15,7 +15,6 @@
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
-      "workspace.config": ["./workspace.config.ts"],
       "@cabbage-cms/api": ["libs/api/src/index.ts"],
       "@cabbage-cms/model": ["libs/model/src/index.ts"]
     }

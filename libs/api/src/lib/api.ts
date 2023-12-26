@@ -3,10 +3,7 @@ import { glob } from 'fast-glob';
 import { readFileSync } from 'fs';
 import matter from 'gray-matter';
 import { extname } from 'path';
-
-// TODO - we should find a better way to do this
-// eslint-disable-next-line @nx/enforce-module-boundaries
-import { rootPath } from 'workspace.config';
+import { workspaceRoot } from './utils';
 
 export const dataDir = 'content/data';
 export const pagesDir = 'content/pages';
@@ -15,8 +12,9 @@ export const siteConfigFile = dataDir + '/config.json';
 const supportedFileTypes = ['md', 'json'];
 
 function contentFilesInPath(dir: string) {
+  console.log('contentFilesInPath(dir)', dir);
   const globPattern = `${dir}/**/*.{${supportedFileTypes.join(',')}}`;
-  return glob.sync(globPattern, { cwd: rootPath });
+  return glob.sync(globPattern, { cwd: workspaceRoot() });
 }
 
 function readContent(file: string): types.IDocumentProps | types.IPageProps {

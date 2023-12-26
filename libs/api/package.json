@@ -2,7 +2,10 @@
   "name": "@cabbage-cms/api",
   "version": "0.0.1",
   "dependencies": {
-    "@swc/helpers": "~0.5.2"
+    "@swc/helpers": "~0.5.2",
+    "@cabbage-cms/model": "*",
+    "fast-glob": "3.3.2",
+    "gray-matter": "^4.0.3"
   },
   "type": "commonjs",
   "main": "./src/index.js",

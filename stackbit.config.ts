@@ -2,16 +2,20 @@ import { GitContentSource } from '@stackbit/cms-git';
 import { defineStackbitConfig } from '@stackbit/types';
 import { modelsByName } from './libs/model/src/lib/model';
 
-import { contentDirs, rootPath } from './workspace.config';
-
 export default defineStackbitConfig({
   stackbitVersion: '~0.6.0',
   ssgName: 'nextjs',
   nodeVersion: '20',
+  dataDir: 'content/data',
+  pagesDir: 'content/pages',
+  devCommand: './node_modules/.bin/nx run home:serve:development --port {PORT}',
+  installCommand: 'yarn install',
+  models: modelsByName,
+  pageLayoutKey: 'layout',
   contentSources: [
     new GitContentSource({
-      rootPath,
-      contentDirs,
+      rootPath: __dirname,
+      contentDirs: ['content/data', 'content/pages'],
       models: Object.values(modelsByName),
       assetsConfig: {
         referenceType: 'static',
