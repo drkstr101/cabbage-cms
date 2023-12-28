@@ -51,7 +51,15 @@
     },
     "lint": {
       "executor": "@nx/eslint:lint",
+      "dependsOn": ["stylelint"],
       "outputs": ["{options.outputFile}"]
+    },
+    "stylelint": {
+      "executor": "nx-stylelint:lint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "lintFilePatterns": ["apps/spotlight/**/*.css", "apps/spotlight/**/*.scss"]
+      }
     }
   },
   "tags": []

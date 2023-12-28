@@ -1,0 +1,16 @@
+{
+  "ignoreFiles": ["**/*"],
+  "overrides": [
+    {
+      "files": ["**/*.css"],
+      "extends": ["stylelint-config-recommended", "stylelint-config-tailwindcss"],
+      "rules": {}
+    },
+    {
+      "files": ["**/*.scss"],
+      "extends": ["stylelint-config-recommended-scss", "stylelint-config-tailwindcss/scss"],
+      "rules": {}
+    }
+  ],
+  "rules": {}
+}

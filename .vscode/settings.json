@@ -22,5 +22,20 @@
   "typescript.tsdk": "./node_modules/typescript/lib",
   "eslint.run": "onSave",
   "eslint.nodePath": "./node_modules",
-  "eslint.validate": ["javascript", "typescript"]
+  "eslint.validate": ["javascript", "typescript"],
+  "css.validate": false,
+  "less.validate": false,
+  "scss.validate": false,
+  "stylelint.enable": true,
+  "stylelint.validate": ["css", "scss", "postcss"],
+  "stylelint.packageManager": "yarn",
+  "[css]": {
+    "editor.defaultFormatter": "stylelint.vscode-stylelint"
+  },
+  "[scss]": {
+    "editor.defaultFormatter": "stylelint.vscode-stylelint"
+  },
+  "[postcss]": {
+    "editor.defaultFormatter": "stylelint.vscode-stylelint"
+  }
 }

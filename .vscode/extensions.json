@@ -7,6 +7,7 @@
     "kavod-io.vscode-jest-test-adapter",
     "orta.vscode-jest",
     "hbenl.vscode-test-explorer",
-    "davidanson.vscode-markdownlint"
+    "davidanson.vscode-markdownlint",
+    "stylelint.vscode-stylelint"
   ]
 }

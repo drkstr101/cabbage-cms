@@ -31,6 +31,10 @@
     "e2e": {
       "cache": true,
       "inputs": ["default", "^production"]
+    },
+    "stylelint": {
+      "inputs": ["default", "{workspaceRoot}/.stylelintrc(.(json|yml|yaml|js))?"],
+      "cache": true
     }
   },
   "namedInputs": {
@@ -46,7 +50,8 @@
       "!{projectRoot}/**/*.cy.[jt]s?(x)",
       "!{projectRoot}/cypress.config.[jt]s",
       "!{projectRoot}/.eslintrc.json",
-      "!{projectRoot}/eslint.config.js"
+      "!{projectRoot}/eslint.config.js",
+      "!{projectRoot}/.stylelintrc(.(json|yml|yaml|js))?"
     ],
     "sharedGlobals": []
   },
