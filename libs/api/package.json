@@ -5,7 +5,8 @@
     "@swc/helpers": "~0.5.2",
     "@cabbage-cms/model": "*",
     "fast-glob": "3.3.2",
-    "gray-matter": "^4.0.3"
+    "gray-matter": "^4.0.3",
+    "lodash": "4.17.21"
   },
   "type": "commonjs",
   "main": "./src/index.js",

@@ -2,8 +2,8 @@ import type { types } from '@cabbage-cms/model';
 import { glob } from 'fast-glob';
 import { readFileSync } from 'fs';
 import matter from 'gray-matter';
-import { extname } from 'path';
-import { workspaceRoot } from './utils';
+import path from 'path';
+import { workspacePath } from './utils';
 
 export const dataDir = 'content/data';
 export const pagesDir = 'content/pages';
@@ -12,28 +12,29 @@ export const siteConfigFile = dataDir + '/config.json';
 const supportedFileTypes = ['md', 'json'];
 
 function contentFilesInPath(dir: string) {
-  console.log('contentFilesInPath(dir)', dir);
   const globPattern = `${dir}/**/*.{${supportedFileTypes.join(',')}}`;
-  return glob.sync(globPattern, { cwd: workspaceRoot() });
+  return glob.sync(globPattern, { cwd: workspacePath() });
 }
 
-function readContent(file: string): types.IDocumentProps | types.IPageProps {
-  const rawContent = readFileSync(file, 'utf8');
-  let content = null;
-  switch (extname(file).substring(1)) {
+function readContent(relFilePath: string): types.IDocumentProps | types.IPageProps {
+  const rawContent = readFileSync(workspacePath(relFilePath), 'utf8');
+  let result = null;
+  switch (path.extname(relFilePath).substring(1)) {
     case 'md':
-      content = matter(rawContent);
+      // eslint-disable-next-line no-case-declarations
+      const { content, data, excerpt } = matter(rawContent);
+      result = { content, ...data, excerpt };
       break;
     case 'json':
-      content = JSON.parse(rawContent);
+      result = JSON.parse(rawContent);
       break;
     default:
-      throw Error(`Unhandled file type: ${file}`);
+      throw Error(`Unsupported file type found at: ${relFilePath}`);
   }
 
   return {
-    __metadata: { id: file, url: fileToUrl(file) },
-    ...content,
+    __metadata: { id: relFilePath, url: fileToUrl(relFilePath) },
+    ...result,
   };
 }
 
@@ -59,9 +60,10 @@ export function urlToContent(url: string) {
   return readContent(file);
 }
 
-export function pagesByType(contentType: types.PageType) {
+export function pagesBySlug(contentType: types.PageType) {
   const result: Record<string, types.IPageProps> = {};
-  for (const [url, file] of urlToFilePairs()) {
+  const urlFilePairs = urlToFilePairs();
+  for (const [url, file] of urlFilePairs) {
     if (file) {
       const content = readContent(file);
       if (url && content.type === contentType) result[url] = content;

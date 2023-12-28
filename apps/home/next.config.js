@@ -2,6 +2,7 @@
 
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 const { composePlugins, withNx } = require('@nx/next');
+const { resolve } = require('path');
 
 /**
  * @type {import('@nx/next/plugins/with-nx').WithNxOptions}
@@ -23,6 +24,10 @@ const nextConfig = {
         pathname: '/random',
       },
     ],
+  },
+  env: {
+    // inject the workspace location here as it is more deterministic than relying on dist/source layout of the project
+    CABBAGE_WORKSPACE: resolve(__dirname, '../..'),
   },
   nx: {
     // Set this to true if you would like to use SVGR

@@ -1,5 +1,5 @@
 import { join } from 'path';
-import { pagesByType, siteConfig } from './api';
+import { pagesBySlug, siteConfig } from './api';
 
 // use our test fixtures as the workspace root
 const workspaceRoot = join(__dirname, '../../test/fixtures');
@@ -9,12 +9,14 @@ const setupEnv = () => {
 
 describe('cabbage-cms.api/api', () => {
   beforeAll(setupEnv);
-  describe('pagesByType', () => {
-    const pages = pagesByType('Page');
-    expect(pages).toBeInstanceOf(Object);
+  describe('pagesBySlug', () => {
+    it('SHOULD group all page entries by their slug value', () => {
+      const pages = pagesBySlug('Page');
+      expect(Object.keys(pages).sort()).toEqual(['/', '/about']);
+    });
   });
   describe('siteConfig', () => {
-    it('should work', async () => {
+    it('resolves a single document that matches the `Config` type', async () => {
       const config = siteConfig();
       expect(config).toHaveProperty('__metadata', {
         id: 'content/data/config.json',

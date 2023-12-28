@@ -1,5 +1,5 @@
 import { resolve } from 'path';
-import { workspaceRoot } from './utils';
+import { workspacePath } from './utils';
 
 const fixturesPath = resolve(__dirname, '../../test/fixtures');
 
@@ -14,17 +14,24 @@ describe('cabbage-cms.api/utils', () => {
   describe('workspaceRoot()', () => {
     afterEach(resetEnv);
     beforeEach(resetEnv);
+
     it.each(['CABBAGE_WORKSPACE', 'GITHUB_WORKSPACE', 'GITPOD_REPO_ROOT'])(
-      'MAY resolve the workspace root from the %s environment variable',
+      'resolves the workspace root from the %s environment variable',
       (name) => {
         process.env[name] = fixturesPath;
-        const result = workspaceRoot();
+        const result = workspacePath();
         expect(result).toEqual(fixturesPath);
       }
     );
-    it('MAY resolve the workspace root from CWD', async () => {
-      const result = workspaceRoot();
+
+    it('resolves the workspace root from CWD', async () => {
+      const result = workspacePath();
       expect(result).toEqual(process.cwd());
+    });
+
+    it('combines multiple path segments while trimming the path separator', () => {
+      process.env['CABBAGE_WORKSPACE'] = '/tmp';
+      expect(workspacePath('foo', '//bar/', '')).toEqual('/tmp/foo/bar');
     });
   });
 });
