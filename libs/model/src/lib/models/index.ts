@@ -7,5 +7,7 @@ export { Header } from './Header';
 export { HeroSection } from './HeroSection';
 export { Image } from './Image';
 export { Link } from './Link';
+export { MetaTag } from './MetaTag';
 export { Page } from './Page';
-export { ThemeStyle } from './ThemeStyle';
+export { Seo } from './Seo';
+export { ThemeConfig } from './ThemeConfig';

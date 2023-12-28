@@ -1,5 +1,6 @@
 /* eslint-disable */
 import { readFileSync } from 'fs';
+import { Config } from 'jest';
 
 // Reading the SWC compilation config and remove the "exclude"
 // for the test files to be compiled by SWC
@@ -25,4 +26,4 @@ export default {
   moduleFileExtensions: ['ts', 'js', 'html'],
   testEnvironment: 'node',
   coverageDirectory: '../../coverage/libs/model',
-};
+} satisfies Config;

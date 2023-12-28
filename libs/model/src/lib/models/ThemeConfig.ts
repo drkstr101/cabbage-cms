@@ -1,8 +1,8 @@
 import { DataModel } from '@stackbit/types';
 
-export const ThemeStyle: DataModel = {
+export const ThemeConfig: DataModel = {
   type: 'data',
-  name: 'ThemeStyle',
+  name: 'ThemeConfig',
   label: 'Theme Style',
   singleInstance: true,
   filePath: 'content/data/style.json',
@@ -19,11 +19,12 @@ export const ThemeStyle: DataModel = {
       ],
       default: 'light',
     },
-    { type: 'color', name: 'primaryColor', label: 'Primary color' },
+    { type: 'color', name: 'primaryColor', label: 'Primary color', default: '#14b8a6' },
     {
       type: 'color',
       name: 'secondaryColor',
       label: 'Secondary color',
+      default: '#6366f1',
     },
   ],
 };

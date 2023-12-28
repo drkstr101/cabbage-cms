@@ -1,4 +1,7 @@
 import { PageModel } from '@stackbit/types';
+import { CardsSection } from './CardsSection';
+import { HeroSection } from './HeroSection';
+import { Seo } from './Seo';
 
 export const Page: PageModel = {
   type: 'page',
@@ -8,19 +11,40 @@ export const Page: PageModel = {
   filePath: 'content/pages/{slug}.md',
   hideContent: true,
   thumbnail: 'https://assets.stackbit.com/components/models/thumbnails/default.png',
+  fieldGroups: [
+    {
+      name: 'seo',
+      label: 'SEO',
+      icon: 'page',
+    },
+  ],
   fields: [
+    {
+      type: 'model',
+      name: 'seo',
+      label: 'SEO',
+      required: false,
+      hidden: false,
+      localized: false,
+      models: [Seo.name],
+      group: 'seo',
+    },
     {
       type: 'string',
       name: 'title',
       label: 'Title',
-      default: 'This Is a New Page',
+      default: 'This is a New Page',
       required: true,
     },
     {
       type: 'list',
       name: 'sections',
       label: 'Sections',
-      items: { type: 'model', models: [], groups: ['sectionComponent'] },
+      items: {
+        type: 'model',
+        models: [HeroSection.name, CardsSection.name],
+        groups: ['sectionComponent'],
+      },
       default: [
         {
           type: 'HeroSection',

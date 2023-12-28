@@ -1,30 +1,122 @@
-export type Document = Config | Page;
-export type DocumentTypeName = Config['type'] | Page['type'];
+import { Model } from '@stackbit/types';
 
-export type Section = CardsSection | HeroSection;
+export type CabbageModel = Readonly<Record<ModelType, Model>>;
 
-export type ModelKind = 'data' | 'object' | 'page';
+export type IModelProps =
+  | ButtonProps
+  | CardProps
+  | CardsSectionProps
+  | ConfigProps
+  | FooterProps
+  | HeaderProps
+  | HeroSectionProps
+  | ImageProps
+  | LinkProps
+  | MetaTagProps
+  | PageProps
+  | SeoProps
+  | ThemeConfigProps;
+export type ModelType = IModelProps['type'];
 
-/** Document types */
-export type Config = {
+//
+// Document types
+//
+////////////////////////
+
+export type IDocumentProps = ConfigProps | ThemeConfigProps;
+export type DocumentType = IDocumentProps['type'];
+
+export type ConfigProps = {
   __metadata: { id: string };
   type: 'Config';
   favicon?: string;
-  header?: Header;
-  footer?: Footer;
+  header?: HeaderProps;
+  footer?: FooterProps;
 };
 
-export type Page = {
+export type ThemeConfigProps = {
   __metadata: { id: string };
-  slug: string;
+  type: 'ThemeConfig';
+  mode?: 'light' | 'dark';
+  primaryColor?: string;
+  secondaryColor?: string;
+};
+
+//
+// Page types
+//
+////////////////////////
+
+export type IPageProps = PageProps;
+export type PageType = IPageProps['type'];
+
+export type ISection = CardsSectionProps | HeroSectionProps;
+export type SectionType = ISection['type'];
+
+export type PageProps = {
+  __metadata: { id: string; slug: string };
   type: 'Page';
   title: string;
-  sections?: Section[];
+  sections?: ISection[];
   content?: string;
 };
 
-/** Nested types */
-export type Button = {
+//
+// Block types
+//
+////////////////////////
+
+export type HeroSectionProps = {
+  type: 'HeroSection';
+  title?: string;
+  subtitle?: string;
+  text?: string;
+  actions?: ButtonProps[];
+  image?: ImageProps;
+};
+
+export type CardsSectionProps = {
+  type: 'CardsSection';
+  title?: string;
+  subtitle?: string;
+  items?: CardProps[];
+};
+
+//
+// Object types
+//
+////////////////////////
+
+export type SeoProps = {
+  type: 'Seo';
+  metaTitle?: string;
+  metaDescription: string;
+};
+
+export type MetaTagProps = {
+  type: 'MetaTag';
+  property:
+    | 'og:title'
+    | 'og:type'
+    | 'og:image'
+    | 'og:image:alt'
+    | 'og:url'
+    | 'og:description'
+    | 'og:locale'
+    | 'og:site_name'
+    | 'og:video'
+    | 'twitter:card'
+    | 'twitter:site'
+    | 'twitter:creator'
+    | 'twitter:description'
+    | 'twitter:title'
+    | 'twitter:image'
+    | 'twitter:image:alt'
+    | 'twitter:player';
+  content: string;
+};
+
+export type ButtonProps = {
   type: 'Button';
   label: string;
   url: string;
@@ -33,49 +125,33 @@ export type Button = {
   color?: 'inherit' | 'primary' | 'secondary';
 };
 
-export type Card = {
+export type CardProps = {
   type: 'Card';
   title?: string;
   text?: string;
-  image?: Image;
-  actions?: Button[];
+  image?: ImageProps;
+  actions?: ButtonProps[];
 };
 
-export type CardsSection = {
-  type: 'CardsSection';
-  title?: string;
-  subtitle?: string;
-  items?: Card[];
-};
-
-export type Footer = {
+export type FooterProps = {
   type: 'Footer';
   copyrightText?: string;
-  navLinks?: Link[];
+  navLinks?: LinkProps[];
 };
 
-export type Header = {
+export type HeaderProps = {
   type: 'Header';
   title?: string;
-  navLinks?: Link[];
+  navLinks?: LinkProps[];
 };
 
-export type HeroSection = {
-  type: 'HeroSection';
-  title?: string;
-  subtitle?: string;
-  text?: string;
-  actions?: Button[];
-  image?: Image;
-};
-
-export type Image = {
+export type ImageProps = {
   type: 'Image';
   url?: string;
   altText?: string;
 };
 
-export type Link = {
+export type LinkProps = {
   type: 'Link';
   label: string;
   url: string;

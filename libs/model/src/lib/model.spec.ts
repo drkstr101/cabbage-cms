@@ -1,4 +1,5 @@
-import modelsByName, { ModelName } from './model';
+import modelsByName from './model';
+import { ModelType } from './model.types';
 
 describe('cabbage-cms.model', () => {
   it.each([
@@ -11,8 +12,11 @@ describe('cabbage-cms.model', () => {
     'HeroSection',
     'Image',
     'Link',
-    'ThemeStyle',
-  ])('MUST provide a %s content model', (name) => {
-    expect(modelsByName[name as ModelName]).toHaveProperty('name', name);
+    'MetaTag',
+    'Page',
+    'Seo',
+    'ThemeConfig',
+  ] as ModelType[])('MUST provide a %s model definition', (type) => {
+    expect(modelsByName[type]).toHaveProperty('name', type);
   });
 });
