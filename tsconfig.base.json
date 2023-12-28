@@ -15,6 +15,11 @@
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
+      "@spotlight/app/*": ["apps/spotlight/app/*"],
+      "@spotlight/components/*": ["apps/spotlight/components/*"],
+      "@spotlight/images/*": ["apps/spotlight/images/*"],
+      "@spotlight/lib/*": ["apps/spotlight/lib/*"],
+      "@spotlight/styles/*": ["apps/spotlight/styles/*"],
       "@cabbage-cms/api": ["libs/api/src/index.ts"],
       "@cabbage-cms/model": ["libs/model/src/index.ts"]
     }
