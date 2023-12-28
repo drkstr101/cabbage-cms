@@ -5,7 +5,7 @@ import { modelsByName } from './libs/model/src/lib/model';
 export default defineStackbitConfig({
   stackbitVersion: '~0.6.0',
   ssgName: 'nextjs',
-  nodeVersion: '20',
+  nodeVersion: '18',
   dataDir: 'content/data',
   pagesDir: 'content/pages',
   devCommand: './node_modules/.bin/nx run home:serve:development --port {PORT}',
